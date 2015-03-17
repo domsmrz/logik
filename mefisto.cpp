@@ -5,6 +5,7 @@
 #include <algorithm>
 #include <list>
 
+#include "readint.h"
 #include "mefisto.h"
 #include "macros.h"
 
@@ -24,7 +25,9 @@ Mefisto::Mefisto(int ai_id, int colors, int pegs) {
 			break;
 		case 2:
 			int n;
-			scanf("%d", &n);
+			printf("Zadejte hloubku algoritmu: ");
+			while(!read_int(&n, 0))
+				printf("Neplatný zápis, zkuste prosím znovu: ");
 			this->prepare_allowed_seq_rand(n);
 			break;
 	}
@@ -117,7 +120,6 @@ void Mefisto::get_reply(int* query) {
 			allowed_seq_it++;
 		}
 	}
-
 
 	// Začneme zapisovat výsledek
 
