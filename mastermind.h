@@ -2,9 +2,9 @@
 #define _MASTERMIND_H
 
 class Mastermind {
-	int ai_id;
-	int pegs;
-	int colors;
+	int ai_id; // Které AI se má použít (v současnosti nepoužíváno)
+	int pegs; // Počet kolíků
+	int colors; // Počet barev
 
 	public:
 	Mastermind(int, int, int);
