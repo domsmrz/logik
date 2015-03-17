@@ -13,7 +13,7 @@ Mastermind::Mastermind(int ai_id, int colors, int pegs) {
 void Mastermind::get_query(int* query) {
 	printf("Zadejte váš tip: ");
 	for (int i = 0; i < this->pegs; ++i) {
-		if (!read_int(&(query[i]), i < this->pegs-1)) {
+		if (!read_int(&(query[i]), i < this->pegs-1) || query[i] >= this->colors) {
 			i = -1;
 			printf("Neplatný zápis, zkuste prosím znovu: ");
 		}

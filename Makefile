@@ -1,5 +1,5 @@
 
-CFLAGS+= -W -Wall -g
+CFLAGS+= -W -Wall
 
 logik: game.o mefisto.o mastermind.o readint.o
 	g++ -o logik game.o mefisto.o mastermind.o readint.o

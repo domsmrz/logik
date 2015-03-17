@@ -14,12 +14,12 @@ class Mefisto {
 		int correct;
 		long long int nseq;
 
-		int* answers;
-		std::list<int> allowed_seq;
+		long long int* answers;
+		std::list<long long int> allowed_seq;
 
 		void prepare_allowed_seq_all();
-		void prepare_allowed_seq_rand(int);
-		int get_answer(int, int*);
+		void prepare_allowed_seq_rand(long long int);
+		long long int get_answer(long long int, int*);
 
 	public:
 		Mefisto(int, int, int);
