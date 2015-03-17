@@ -8,7 +8,7 @@ class Mastermind {
 
 	public:
 	Mastermind(int, int, int);
-	int* get_query();
+	void get_query(int*);
 	void send_reply(int*);
 
 };

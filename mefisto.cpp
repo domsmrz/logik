@@ -15,21 +15,38 @@ Mefisto::Mefisto(int ai_id, int colors, int pegs) {
 	this->correct = 0;
 	this->nseq = (int) pow(this->colors, this->pegs);
 
-	this->prepare_allowed_seq();
+	switch(ai_id) {
+		case 0:
+			this->prepare_allowed_seq_rand(1);
+			break;
+		case 1:
+			this->prepare_allowed_seq_all();
+			break;
+		case 2:
+			int n;
+			scanf("%d", &n);
+			this->prepare_allowed_seq_rand(n);
+			break;
+	}
 
 	this->answers = new int[(this->pegs+1) * (this->pegs+1)]();
 }
 
 /*** PRIVATE ***/
 
-void Mefisto::prepare_allowed_seq(void) {
+void Mefisto::prepare_allowed_seq_rand(int number) {
+	srand(time(NULL));
+	for (int i = 0; i < number; ++i) {
+		this->allowed_seq.push_back(rand() % this->nseq);
+	}
+}
+
+void Mefisto::prepare_allowed_seq_all() {
 	int i;
 
 	for (i = 0; i < this->nseq; ++i) {
 		this->allowed_seq.push_back(i);
 	}
-
-	return;
 }
 
 int Mefisto::get_answer(int final, int* query) {
@@ -71,7 +88,7 @@ int Mefisto::get_answer(int final, int* query) {
 
 /*** PUBLIC ***/
 
-int* Mefisto::get_reply(int* query) {
+void Mefisto::get_reply(int* query) {
 	int i;
 	int answerI;
 	std::list<int>::iterator allowed_seq_it;
@@ -101,32 +118,36 @@ int* Mefisto::get_reply(int* query) {
 		}
 	}
 
-	int* reply = new int[this->pegs]();
+
+	// Začneme zapisovat výsledek
 
 	i = 0;
 	while (maxI >= (this->pegs+1)) {
-		reply[i] = 2;
+		query[i] = 2;
 		i++;
 		maxI -= (this->pegs+1);
 	}
 
 	while (maxI > 0) {
-		reply[i] = 1;
+		query[i] = 1;
 		i++;
 		maxI--;
 	}
 
+	while (i < this->pegs) {
+		query[i] = 0;
+		i++;
+	}	
+
 	this->correct = 1;
 	for (i = 0; i < this->pegs; ++i) {
-		if (reply[i] != 2) {
+		if (query[i] != 2) {
 			this->correct = 0;
 			break;
 		}
 	}
-
-	return reply;
 }
 
 int Mefisto::is_correct() {
-	return correct;
+	return this->correct;
 }
