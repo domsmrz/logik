@@ -1,0 +1,24 @@
+Program je rozdělen na několik logických celků (a tedy samostatných souborů):
+
+GAME:
+	Jednoduchá obálka - Stará se o základní načítání hry a komunikaci mezi Mastermind-em a Mefistem
+
+READINT:
+	Stará se o načítání vstupu a jeho korektnost
+
+MASTERMIND:
+	Zpracovává hru z pohledu hráče. Aktuálně tedy pouze čte tipy ze vstupu a na výstup vypisuje odpovědi, které dostal od Mefista
+
+MEFISTO:
+	Na zadané tipy poskytuje odpovědi. V závislosti na tom, jaký byl vybrán algoritmus se různě chová:
+	0 (Náhodný) - Na začátku náhodně vygeneruje správnou posloupnost a poté vždy na dotazy vrací nakolik se s touto posloupností shodují.
+	1 (MinMax) - Na začátku si nagenerguje všechny možné posloupnosti. Při každém dotazu projde všechny dosud nevyloučené posloupnosti,
+		podívá se, jakou odpověď by daná posloupnost na tento dotaz dala. Ze všech odpovědí pak vybere tu nejčastější a tu vrátí.
+		Nakonec ještě vyškrtá všechny posloupnosti, které již nejsou přípustné (vzhledem k odpovědi, kterou vrátí)
+	2 (Omezený MinMax) - Vychází z předchozího algoritmu MinMaxu. Jen na začátku nenageneruje všechny možné posloupnosti ale jen
+		přesně daný počet. Jelikož posloupnosti generguje zcela náhodně, může se stát, že nějakou vygeneruje vícekrát, to však vesměs
+		nevadí, neboť pokud je počet nagenerovaných posloupností výrazně menší než počet celkových posloupností, stav, kdy nagenerujeme
+		jednu posloupnost vícekrát bude velmi málo častý. Naopak pokud bude počet nagenerovaných posloupností řádově stejný jako
+		počet všech posloupností je lepší použít předchozí algoritmus.
+		Toto omezení je nutné, neboť od určitých hodnot (cca 12 barev, 8 kolíků) začíná být předchozí algoritmus pomalý a toto poskytuje
+		rozumně chytrý a rychlý algoritmus na řešení takto velkých vstupů

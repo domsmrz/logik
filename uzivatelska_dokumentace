@@ -1,0 +1,24 @@
+INSTALACE A SPUŠTĚNÍ:
+	V adresáři s hrou spusťte příkaz
+	# make
+
+	Pak spusťte soubor logik
+	# ./logik
+
+PRŮBĚH HRY:
+	Na začátku budete dotázáni na parametry hry -- na počet kolíků, barev a algoritmus (popis algoritmů níže)
+	Poté budete vždy dotázání na váš tip. Ten zadejte jako posloupnost celých čísel, kde vždy i-té číslo
+	reprezentuje barvu i-tého kolíku ve vašem tipu (počet čísel by tedy měl odpovídat počtu kolíků).
+	Odpověď dostanete opět ve formátu posloupnosti celých čísel. Počet dvojek v posloupnosti reprezentuje
+	počet správně umístěných kolíků a počet jedniček počet kolíků, které měly správnou barvu, ale byly
+	špatně umístěné.
+	V okamžiku, kdy zadáte správnou posloupnost, program vypíše počet vašich tipů a skončí
+
+ALGORITMY:
+	0 (Náhodný) - prostě vybere jednu náhodnou posloupnost a tu prohlásí za správnou
+	1 (MinMax) - algoritmus založený na MinMaxu, který se snaží co nejvíce oddálit hráčovu výhru
+		Vzhledem ke složitosti může být pro velké hry pomalý
+		(velmi přibližně od 12 barev a 8 kolíků začíná běžet v řádu sekund)
+	2 (Omezený MinMax) - úprava předchozího algortimu aby byl rychlejší. Při volbě tohoto algoritmu budete
+		ještě dotázáni na jeho hloubku -- čím větší tím chytřejší a pomalejší algoritmus bude
+		(velmi přibližně u hodnoty jeden milion začíná běžet v rychlosti sekundu na prví dotaz)
