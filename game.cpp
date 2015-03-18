@@ -1,7 +1,6 @@
 #include <cstdio>
 #include "mefisto.h"
 #include "mastermind.h"
-#include "macros.h"
 #include "readint.h"
 
 using namespace std;

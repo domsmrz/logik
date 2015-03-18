@@ -1,7 +1,6 @@
 #ifndef _MEFISTO_H
 #define _MEFISTO_H
 
-#include "macros.h"
 #include <list>
 
 class Mefisto {

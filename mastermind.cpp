@@ -2,7 +2,6 @@
 #include <cstdlib>
 #include "readint.h"
 #include "mastermind.h"
-#include "macros.h"
 
 Mastermind::Mastermind(int ai_id, int colors, int pegs) {
 	this->ai_id = ai_id;

@@ -7,7 +7,6 @@
 
 #include "readint.h"
 #include "mefisto.h"
-#include "macros.h"
 
 Mefisto::Mefisto(int ai_id, int colors, int pegs) {
 	this->ai_id = ai_id;
