@@ -1,9 +1,9 @@
 INSTALACE A SPUŠTĚNÍ:
 	V adresáři s hrou spusťte příkaz
-	# make
+	$ make
 
 	Pak spusťte soubor logik
-	# ./logik
+	$ ./logik
 
 PRŮBĚH HRY:
 	Na začátku budete dotázáni na parametry hry -- na počet kolíků, barev a algoritmus (popis algoritmů níže)

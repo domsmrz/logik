@@ -1,28 +1,45 @@
 #include <cstdio>
+#include <iostream>
+#include <stdexcept>
 #include "mefisto.h"
 #include "mastermind.h"
 #include "readint.h"
 
 using namespace std;
 
+int reader() {
+	int n;
+	int check = 0;
+	while (!check) {
+		check = 1;
+		try {
+			n = read_int(0);
+		}
+		catch (runtime_error e) {
+			cout << e.what();
+			check = 0;
+		}
+	}
+	return n;
+}
+
 int main() {
 	int pegs, colors, mef_ai;
 
 	// Načítání parametrů hry
-	printf("Zadejte počet barev: ");
-	while (!read_int(&colors, 0))
-		printf("Neplatný zápis, zkuste prosím znovu: ");
+	cout << "Zadejte počet barev: ";
+	colors = reader();
 
-	printf("Zadejte počet kolíků: ");
-	while (!read_int(&pegs, 0))
-		printf("Neplatný zápis, zkuste prosím znovu: ");
+	cout << "Zadejte počet kolíků: ";
+	pegs = reader();
 
-	printf("Vyberte si AI proti kterému chcete hrát:\n");
-	printf("0 - Náhodný (obvyklá hra)\n");
-	printf("1 - MinMax (nevhodný pro velké hry)\n");
-	printf("2 - Omezený MinMax\n");
-	while (!read_int(&mef_ai, 0) || mef_ai > 2)
-		printf("Neplatný zápis, zkuste prosím znovu: ");
+	cout << "Vyberte si AI proti kterému chcete hrát:\n";
+	cout << "0 - Náhodný (obvyklá hra)\n";
+	cout << "1 - MinMax (nevhodný pro velké hry)\n";
+	cout << "2 - Omezený MinMax\n";
+	do {
+		mef_ai = reader();
+	} while (mef_ai > 2);
 
 	Mefisto mefisto(mef_ai, colors, pegs);
 	Mastermind mastermind(0, colors, pegs);
@@ -37,7 +54,7 @@ int main() {
 		++turns;
 	}
 
-	printf("Vyhráli jste! Počet tahů: %d\n", turns);
+	cout << "Vyhráli jste! Počet tahů: " <<  turns << std::endl;
 
 	return 0;
 }

@@ -1,5 +1,5 @@
-#include <cstdio>
-#include <cstdlib>
+#include <iostream>
+#include <stdexcept>
 #include "readint.h"
 #include "mastermind.h"
 
@@ -14,25 +14,31 @@ Mastermind::Mastermind(int ai_id, int colors, int pegs) {
  * @param query - místo, kam se má dotaz zapsat
  */
 void Mastermind::get_query(int* query) {
-	printf("Zadejte váš tip: ");
+	std::cout << "Zadejte váš tip: ";
 	for (int i = 0; i < this->pegs; ++i) {
-		if (!read_int(&(query[i]), i < this->pegs-1) || query[i] >= this->colors) {
-			// Pokud se nějaké číslo nepodařilo načíst, skartujeme co jsme přečetli a čteme od začátku
+		try {
+			query[i] = read_int(i < this->pegs-1);
+			if (query[i] >= this->colors) {
+				if (i < this->pegs)
+					read_int(0);
+				throw (std::runtime_error("Neplatná barva, zkuste prosím znovu: "));
+			}
+		}
+		catch (std::runtime_error e) {
 			i = -1;
-			printf("Neplatný zápis, zkuste prosím znovu: ");
+			std::cout << e.what();
 		}
 	}
 }
 
 /***
- * Funkce Masterminda, pomocí které zjistí, jakou odpověď dostal od Mefista
- * (Aktuálně jen vypíše na výstup, jelikož Mastermind není AI, ale je ovládán člověkem)
+ * Funkce Masterminda -- hráče, pomocí které zjistí, jakou odpověď dostal od Mefista
  * @param reply - pole, ve kterém je popsaná odpověď
  */
 void Mastermind::send_reply(int* reply) {
-	printf("Odpověď: ");
+	std::cout << "Odpověď: ";
 	for (int i = 0; i < this->pegs; ++i) {
-		printf("%d ", *(reply + i));
+		std::cout << *(reply + i) << " ";
 	}
-	printf("\n");
+	std::cout << std::endl;
 }

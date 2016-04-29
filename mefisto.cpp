@@ -1,9 +1,10 @@
-#include <cstdio>
+#include <iostream>
 #include <cstdlib>
 #include <ctime>
 #include <cmath>
 #include <algorithm>
 #include <list>
+#include <stdexcept>
 
 #include "readint.h"
 #include "mefisto.h"
@@ -27,9 +28,18 @@ Mefisto::Mefisto(int ai_id, int colors, int pegs) {
 		case 2:
 			// "Omezený MinMax" - vybere náhodně n sekvencí a ty prohlásí za přípustné;
 			long long int n;
-			printf("Zadejte hloubku algoritmu: ");
-			while(!read_lint(&n, 0))
-				printf("Neplatný zápis, zkuste prosím znovu: ");
+			std::cout << "Zadejte hloubku algoritmu: ";
+			int check = 0;
+			while (!check) {
+				check = 1;
+				try {
+					n = read_lint(0);
+				}
+				catch (std::runtime_error e) {
+					std::cout << e.what();
+					check = 0;
+				}
+			}
 			this->prepare_allowed_seq_rand(n);
 			break;
 	}

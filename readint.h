@@ -3,7 +3,7 @@
 
 #define BUFFERSIZE 2000
 
-int read_lint(long long int*, int);
-int read_int(int*, int);
+long long int read_lint(int);
+int read_int(int);
 
 #endif
