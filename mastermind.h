@@ -1,6 +1,8 @@
 #ifndef _MASTERMIND_H
 #define _MASTERMIND_H
 
+#include <vector>
+
 class Mastermind {
 	int ai_id; // Které AI se má použít (v současnosti nepoužíváno)
 	int pegs; // Počet kolíků
@@ -8,8 +10,8 @@ class Mastermind {
 
 	public:
 	Mastermind(int, int, int);
-	void get_query(int*);
-	void send_reply(int*);
+	void get_query(std::vector<int>&);
+	void send_reply(std::vector<int>&);
 
 };
 

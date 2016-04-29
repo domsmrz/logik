@@ -4,6 +4,7 @@
 #include <cmath>
 #include <algorithm>
 #include <list>
+#include <vector>
 #include <stdexcept>
 
 #include "readint.h"
@@ -73,18 +74,18 @@ void Mefisto::prepare_allowed_seq_all() {
 
 /***
  * Funkce, která pro daný dotaz a danou správnou posloupnost vrátí příslušnou odpověď
- * @param final - správná posloupnost zakódováná jako číslo v soustavě o základu rovnému počtu barev
- * @param query - pole s dotazem
+ * @param fin - správná posloupnost zakódováná jako číslo v soustavě o základu rovnému počtu barev
+ * @param query - vektor s dotazem
  * @return - příslušná odpověď zakódovaná jako dvojciferné číslo v soustavě o základu (#kolíků+1), kde 1. cifra je počet správných umístění a 2. počet správných barev
  */
-long long int Mefisto::get_answer(long long int final, int* query) {
+long long int Mefisto::get_answer(long long int fin, std::vector<int>& query) {
 	int i;
 
 	int final_seq[this->pegs];
 	for (i = this->pegs - 1; i >= 0; --i) {
 		// Rozkódujeme správnou posloupnost do pole
-		final_seq[i] = final % this->colors;
-		final /= this->colors;
+		final_seq[i] = fin % this->colors;
+		fin /= this->colors;
 	}
 
 	int correct_pegs = 0;
@@ -122,9 +123,9 @@ long long int Mefisto::get_answer(long long int final, int* query) {
 
 /***
  * Funkce, která dostane dotaz a má na něj vygenerovat odpověď
- * @param query - pole s dotazem, do kterého se nakonec uloží i odpověď
+ * @param query - vektor s dotazem, do kterého se nakonec uloží i odpověď
  */
-void Mefisto::get_reply(int* query) {
+void Mefisto::get_reply(std::vector<int>& query) {
 	long long int i;
 	int answerI;
 	std::list<long long int>::iterator allowed_seq_it;

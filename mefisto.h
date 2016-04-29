@@ -2,6 +2,7 @@
 #define _MEFISTO_H
 
 #include <list>
+#include <vector>
 
 class Mefisto {
 	private:
@@ -19,11 +20,11 @@ class Mefisto {
 
 		void prepare_allowed_seq_all();
 		void prepare_allowed_seq_rand(long long int);
-		long long int get_answer(long long int, int*);
+		long long int get_answer(long long int, std::vector<int>&);
 
 	public:
 		Mefisto(int, int, int);
-		void get_reply(int*);
+		void get_reply(std::vector<int>&);
 		int is_correct();
 };
 

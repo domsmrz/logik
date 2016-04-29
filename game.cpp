@@ -1,12 +1,18 @@
 #include <cstdio>
 #include <iostream>
 #include <stdexcept>
+#include <vector>
 #include "mefisto.h"
 #include "mastermind.h"
 #include "readint.h"
 
 using namespace std;
 
+/***
+ * Funkce, která načte ze vstupu číslo
+ * (opakuje pokusy dokud neuspěje)
+ * @return - načtené číslo
+ */
 int reader() {
 	int n;
 	int check = 0;
@@ -45,7 +51,7 @@ int main() {
 	Mastermind mastermind(0, colors, pegs);
 
 	int turns = 0;
-	int* packet = new int[pegs](); // Paměť, ve které si Mastermind a Mefisto předávají data
+	vector<int> packet(pegs); // Paměť, ve které si Mastermind a Mefisto předávají data
 	while (!mefisto.is_correct()) {
 		// Smyčka komunikace mezi Mastermindem a Mefistem dokud se nevyhraje hra
 		mastermind.get_query(packet);
