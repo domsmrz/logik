@@ -7,7 +7,7 @@ READINT:
 	Stará se o načítání vstupu a jeho korektnost
 
 MASTERMIND:
-	Zpracovává hru z pohledu hráče. Aktuálně tedy pouze čte tipy ze vstupu a na výstup vypisuje odpovědi, které dostal od Mefista
+	Zpracovává hru z pohledu hráče. Čte tipy ze vstupu a na výstup vypisuje odpovědi, které dostal od Mefista
 
 MEFISTO:
 	Na zadané tipy poskytuje odpovědi. V závislosti na tom, jaký byl vybrán algoritmus se různě chová:

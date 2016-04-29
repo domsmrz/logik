@@ -44,11 +44,12 @@ int main() {
 	cout << "1 - MinMax (nevhodný pro velké hry)\n";
 	cout << "2 - Omezený MinMax\n";
 	do {
+		cout << "Zadejte identifikační číslo příslušného AI: ";
 		mef_ai = reader();
 	} while (mef_ai > 2);
 
 	Mefisto mefisto(mef_ai, colors, pegs);
-	Mastermind mastermind(0, colors, pegs);
+	Mastermind mastermind(colors, pegs);
 
 	int turns = 0;
 	vector<int> packet(pegs); // Paměť, ve které si Mastermind a Mefisto předávají data
